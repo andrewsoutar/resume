@@ -1,0 +1,374 @@
+* {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+address {
+    font-style: normal;
+}
+
+html, body, ul, dl, dt, dd, h1, h2, h3 {
+    margin: 0;
+}
+
+html {
+    min-height: 0;
+    height: auto;
+    padding: 1em;
+}
+
+@media print {
+    html {
+        padding: 0;
+    }
+    nav {
+        display: none;
+    }
+}
+
+body {
+    padding: 0;
+    display: flex;
+    background-color: #828689;
+}
+
+main {
+    width: 8.5in;
+    max-width: 8.5in;
+    height: 11in;
+    max-height: 11in;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1em 2em 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: white;
+    font-size: 85%;
+    font-family: 'DejaVu Sans';
+}
+
+main > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: -5;
+}
+
+main > section.education {
+    order: -1;
+    flex-direction: row;
+    flex: 1 1;
+}
+
+main > header * {
+    justify-content: center;
+}
+
+main > header h1 {
+    font-size: 170%;
+    font-weight: normal;
+}
+
+main > header h1::before {
+    content: '{';
+    font-weight: lighter;
+    font-size: 110%;
+    color: #c0c0c0;
+}
+
+main > header h1::after {
+    content: '}';
+    font-weight: lighter;
+    font-size: 110%;
+    color: #c0c0c0;
+}
+
+
+main > header .details {
+    display: flex;
+    flex-direction: row;
+}
+
+main > header .details > *::after {
+    content: '|';
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+main > header .details > *:nth-last-child(1)::after {
+    content: '';
+    margin: 0;
+}
+
+
+main > header .email {
+    display: flex;
+}
+
+main > header .email::before {
+    content: '<';
+    font-weight: lighter;
+    font-size: 90%;
+}
+
+main > header .email::after {
+    content: '>';
+    font-weight: lighter;
+    font-size: 90%;
+}
+
+
+main > header .key > span {
+    padding-left: 3px;
+    padding-right: 3px;
+    font-weight: lighter;
+}
+
+main > header .key > span:nth-last-child(2), main > header .key > span:nth-last-child(1) {
+    font-weight: normal;
+}
+
+
+main > section {
+    width: 100%;
+    margin-top: 0.8em;
+}
+
+main > section > header {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+
+section.experience > section {
+    margin-top: 0.85em;
+}
+
+section.experience > section:first-child {
+    margin-top: 0.2em;
+}
+
+section.experience > section > header {
+    display: flex;
+    align-items: end;
+}
+
+section.experience > section > header > span {
+    flex: 1 1;
+    text-align: center;
+}
+
+section.experience > section > header > span.title {
+    flex: 0 0 auto;
+    order: 0;
+    font-weight: bold;
+    max-width: 40%;
+}
+
+section.experience > section > header > span.organization {
+    order: -1;
+    text-align: left;
+}
+
+section.experience > section > header > span.date {
+    order: 1;
+    text-align: right;
+}
+
+.extra {
+    font-weight: lighter;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+
+section.education > div {
+    width: 66%;
+}
+
+section.education > div section {
+    margin-top: 0.5em;
+}
+
+section.education > div section > header {
+    display: flex;
+    padding-bottom: 0.3em;
+    align-items: baseline;
+}
+
+section.education > div section > header span {
+    flex: 1;
+    text-align: center;
+}
+
+section.education > div section > header span.degree {
+    flex: 0 1 auto;
+    order: 0;
+    font-weight: bold;
+}
+
+section.education > div section > header span.school {
+    order: -1;
+    text-align: left;
+    font-weight: bold;
+}
+
+section.education > div section > header span.date {
+    order: 1;
+    text-align: right;
+}
+
+.anticipated::before {
+    content: 'Anticipated';
+    padding-right: 0.3em;
+    font-weight: lighter;
+}
+
+
+section.education > div section > ul {
+    column-count: 2;
+}
+
+section.education > div section > ul > li .skill {
+    font-weight: lighter;
+    padding-left: 0.3em;
+}
+
+section.education > div section > ul > li .skill::before {
+    content: '[';
+}
+
+section.education > div section > ul > li .skill::after {
+    content: ']';
+}
+
+
+section.skills > div {
+    display: flex;
+}
+
+
+section.projects {
+    flex: 5;
+}
+
+section.projects > header {
+    display: flex;
+    align-items: baseline;
+}
+
+section.projects > header > h3 {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+section.projects > header a {
+    margin-left: 1.5em;
+}
+
+section.projects > header a::before {
+    content: '<';
+    font-weight: lighter;
+}
+
+section.projects > header a::after {
+    content: '>';
+    font-weight: lighter;
+}
+
+section.projects > section {
+    margin-left: 2em;
+}
+
+section.projects > section > header {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+section.projects > section > header dl {
+    display: flex;
+}
+
+section.projects > section > header dd {
+    font-weight: normal;
+    padding-left: 0.3em;
+}
+
+section.projects > section > header dd::before {
+    content: '(';
+}
+
+section.projects > section > header dd::after {
+    content: ')';
+}
+
+section.projects > section > ul {
+    margin-bottom: 1em;
+    padding-left: 1em;
+}
+
+section.projects > section:last-child > ul {
+    margin-bottom: 0;
+}
+
+section.technologies {
+    flex: 2;
+}
+
+section.technologies > ul {
+    padding-left: 2.0em;
+}
+
+main > footer {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: flex-end;
+    font-weight: lighter;
+}
+
+main > footer > * {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+.address {
+    display: block;
+    margin: 0;
+}
+
+.address > *:first-child::before {
+    display: none;
+}
+
+.address > *::before {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    content: '|';
+    font-weight: lighter;
+}
+
+.address::after {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    content: '|';
+    font-weight: lighter;
+}
+
+.citizen {
+    display: block;
+    margin: 0;
+    /* font-weight: bold; */
+    text-align: center;
+}
+
+.citizen::before {
+    padding: 0;
+    content: 'U.S. Citizen';
+}
