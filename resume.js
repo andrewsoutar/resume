@@ -1,5 +1,11 @@
 const $ = document.querySelector.bind(document);
 
-$("#stylesheet-select").addEventListener("change", e => {
-  $("#stylesheet").href = e.target.value;
+function setStylesheet() {
+  $("#stylesheet").href = $("#stylesheet-select").value;
+}
+
+document.addEventListener("DOMContentLoaded", e => {
+  $("#stylesheet-select").value = new URLSearchParams(window.location.search).get("style") || "resume.css";
+  setStylesheet();
+  $("#stylesheet-select").addEventListener("change", setStylesheet);
 });
