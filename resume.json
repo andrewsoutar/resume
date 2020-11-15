@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "type": "education",
+      "school": "Stevens Institute of Technology",
+      "degree": "B.S. Cybersecurity",
+      "date": "Jan 2020",
+      "courses": [
+        "Systems Security",
+        "Foundations of Cryptography",
+        "Algorithms",
+        "Systems Programming"
+      ]
+    },
+    {
+      "type": "education",
+      "school": "County College of Morris",
+      "degree": "A.S. Science - Mathematics",
+      "date": "May 2017"
+    }
+  ]
+}

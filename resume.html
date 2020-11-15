@@ -2,260 +2,295 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link id="stylesheet" rel="stylesheet" type="text/css" href="resume.css" />
+    <title>Resume</title>
+    <style id="global-css">
+     * {
+       color: black;
+     }
+
+     a {
+       text-decoration: none;
+     }
+
+     address {
+       font-style: normal;
+     }
+
+     html, body, ul, dl, dt, dd, h1, h2, h3 {
+       margin: 0;
+       padding: 0;
+     }
+
+     html {
+       min-height: 0;
+       height: auto;
+     }
+
+     body {
+       display: none;
+     }
+     body:defined {
+       display: block;
+     }
+    </style>
+    <script type="text/javascript">
+     "use strict";
+     (()=>{
+       window.customElements.define(
+         "custom-element", class CustomElement extends HTMLElement {});
+       window.defineElement = (f = _ => class extends _ {}) => {
+         const customElement =
+           window.document.currentScript.closest("custom-element");
+         const superTag = customElement.getAttribute("extends");
+         const superTagClass = superTag
+                             ? document.createElement(superTag).constructor
+                             : HTMLElement;
+         class Superclass extends superTagClass {
+           constructor(...args) {
+             const self = super(...args);
+             self._rendering = true;
+             const template = customElement.querySelector("template");
+             if (template) {
+               const shadowRoot = self.attachShadow({mode: "open"});
+               const globalCss = document.querySelector("#global-css");
+               if (globalCss != null)
+                 shadowRoot.appendChild(globalCss.cloneNode(true));
+               shadowRoot.appendChild(
+                 template.content.cloneNode(true)
+               );
+             }
+             self._props = new Proxy({}, {
+               set(target, property, value) {
+                 target[property] = value;
+                 self._render(...self._convenienceArgs());
+                 return true;
+               }
+             });
+             self.setup(...self._convenienceArgs());
+             self.render(...self._convenienceArgs());
+             self._rendering = false;
+             return self;
+           }
+           _convenienceArgs() {
+             return this.shadowRoot
+                  ? [_ => this.shadowRoot.querySelector(_),
+                     _ => this.shadowRoot.querySelectorAll(_)]
+                  : [];
+           }
+           setup() {}
+           render() {}
+           _render(...args) {
+             if (!this._rendering) {
+               this._rendering = true;
+               this.render(...args);
+               this._rendering = false;
+             }
+           }
+
+           get props() {
+             return this._props;
+           }
+           static get renderAttributes() { return [] }
+
+           static get observedAttributes() {
+             return this.renderAttributes;
+           }
+           attributeChangedCallback() {
+             this._render(...this._convenienceArgs());
+           }
+         };
+         window.customElements.define(customElement.id, f(Superclass),
+                                      superTag ? {extends: superTag} : undefined);
+       };
+     })();
+    </script>
+
+    <!-- Element definitions -->
+    <custom-element id="fake-page">
+      <template>
+        <style>
+         :host {
+           padding: 0;
+           display: flex;
+           background-color: #828689;
+         }
+         :host([hidden]) {
+           display: none;
+         }
+
+         div {
+           width: 8.5in;
+           max-width: 8.5in;
+           height: 11in;
+           max-height: 11in;
+           box-sizing: border-box;
+           margin: 1em auto;
+           padding: 1em 2em 1em 2em;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           flex: 1;
+           background-color: white;
+           font-size: 85%;
+           font-family: 'DejaVu Sans';
+         }
+        </style>
+        <div>
+          <slot />
+        </div>
+      </template>
+      <script>
+       defineElement();
+      </script>
+    </custom-element>
+
+    <custom-element id="json-resume">
+      <template>
+        <style>
+         :host {
+           display: block;
+           width: 100%;
+         }
+         :host([hidden]) {
+           display: none;
+         }
+        </style>
+        <resume-section class="education" name="Education"></resume-section>
+        <resume-section class="experience" name="Competitions/Work Experience"></resume-section>
+        <resume-section class="skills" name="Skills"></resume-section>
+      </template>
+      <script>
+       defineElement(_ => class extends _ {
+         static get renderAttributes() { return ["src"]; }
+         async render($) {
+           const src = this.getAttribute("src");
+           if (!src)
+             return;
+           const data = await (await fetch(this.getAttribute("src"))).json();
+
+           $(".education").props.data = data.entries.filter(({type: tp}) => tp === "education");
+           $(".experience").props.data = data.entries.filter(({type: tp}) => tp === "experience");
+           /* FIXME */
+           $(".skills").props.data = data.entries.filter(({type: tp}) => tp === "skill");
+         }
+       });
+      </script>
+    </custom-element>
+
+    <custom-element id="resume-section">
+      <template>
+        <style>
+         :host {
+           display: block;
+           width: 100%;
+           margin-top: 0.8em;
+         }
+         header {
+           text-align: center;
+           font-weight: bold;
+           background-color: #dddddd;
+           padding-top: 0.3em;
+           padding-bottom: 0.2em;
+         }
+        </style>
+        <header><h2><span id="section-name"/></h2></header>
+      </template>
+      <script>
+       defineElement(_ => class extends _ {
+         static get renderAttributes() { return ["class", "name"]; }
+         render($, $$) {
+           $("#section-name").textContent = this.getAttribute("name");
+
+           const newEls = (this.props.data || []).map(entry => {
+             const el = this.shadowRoot.ownerDocument.createElement("resume-entry");
+             el.props.data = entry;
+             return el;
+           });
+
+           $$("resume-entry").forEach(e => e.remove());
+           newEls.forEach(_ => this.shadowRoot.appendChild(_));
+         }
+       });
+      </script>
+    </custom-element>
+
+    <custom-element id="resume-entry">
+      <template>
+        <style>
+         :host {
+           margin-top: 0.85em;
+         }
+         /* FIXME garbage */
+         :host:first-child {
+           margin-top: 0.2em;
+         }
+
+         header {
+           display: flex;
+           padding-bottom: 0.3em;
+           align-items: baseline;
+         }
+         header span {
+           flex: 1;
+           text-align: center;
+         }
+         header > :first-child {
+           font-weight: bold;
+         }
+
+         header span.degree {
+           flex: 0 1 auto;
+           order: 0;
+         }
+         header span.school {
+           order: -1;
+           text-align: left;
+         }
+         header span.date {
+           order: 1;
+           text-align: right;
+         }
+
+         ul.short {
+           column-count: 2;
+         }
+        </style>
+        <header></header>
+        <div></div>
+      </template>
+      <script>
+       defineElement(_ => class extends _ {
+         render($) {
+           const data = this.props.data;
+           $("header").innerHTML = ``;
+           $("div").innerHTML = ``;
+           if (typeof data === "undefined")
+             return;
+           if (data.type == "education") {
+             $("header").innerHTML = `<span class="degree"></span><span class="school"></span><span class="date"></span>`;
+             $(".degree").textContent = data.degree;
+             $(".school").textContent = data.school;
+             $(".date").textContent = data.date;
+
+             if (data.courses) {
+               $("div").innerHTML = `<ul class="short"></ul>`;
+               data.courses.forEach(course => {
+                 const el = this.shadowRoot.ownerDocument.createElement("li");
+                 el.textContent = course;
+                 $("ul").appendChild(el);
+               });
+             }
+           }
+         }
+       });
+      </script>
+    </custom-element>
   </head>
 
   <body>
-    <nav>
-      <select id="stylesheet-select" autofocus="true">
-        <option value="resume.css">resume.css</option>
-        <option value="resume2.css">resume2.css</option>
-        <option value="resume3.css">resume3.css</option>
-        <option value="resume4.css">resume4.css</option>
-      </select>
-      <script type="text/javascript" src="resume.js"></script>
-    </nav>
-    <main>
-      <header>
-        <h1><a href="https://www.andrewsoutar.com/" rel="author">Andrew Soutar</a></h1>
-        <div class="phone">
-          <a href="tel:8623456572">(862) 345-6572</a>
-        </div>
-        <address>
-          <a class="email" href="mailto:andrew@andrewsoutar.com">andrew@andrewsoutar.com</a>
-        </address>
-      </header>
-
-      <section class="experience">
-        <header>
-          <h2>Competitions/Work Experience</h2>
-        </header>
-
-        <section>
-          <header>
-            <span class="title">Cyber Security Intern</span>
-            <span class="organization">The Aerospace Corporation</span>
-            <span class="date">May-August 2018</span>
-          </header>
-
-          <ul>
-            <li>
-              Designed and partially implemented a real-time
-              vulnerability monitoring application
-            </li>
-            <li>
-              Collaborated in the configuration of multiple virtualized
-              environments
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="title">Northeast Collegiate Cyber Defense Competition</span>
-            <span class="organization">Stevens Cyber Defense Team</span>
-            <span class="date"><span class="extra">Regionals</span>Mar 2018</span>
-          </header>
-          <ul>
-            <li>Placed 5<sup>th</sup> out of 8 teams that qualified for regionals
-            <li>
-              Worked with a team to secured &amp; protect diverse physical and cloud
-              infrastructure on multiple platforms in a high-pressure, fast-paced
-              environment
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="title">Penn State Cybersecurity Competition</span>
-            <span class="organization">Stevens Cyber Defense Team</span>
-            <span class="date">Mar 2018</span>
-          </header>
-          <ul>
-            <li>
-              Identified and described vulnerabilities in binaries using
-              core dumps and instruction traces
-            </li>
-            <li>Placed 1<sup>st</sup> out of 5 teams</li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="title">CSAW Capture-the-Flag</span>
-            <span class="organization">Stevens Cyber Defense Team</span>
-            <span class="date"><span class="extra">Qualifiers</span>Sept 2017</span>
-          </header>
-          <ul>
-            <li>
-              Competed in a global virtual competition by solving
-              reverse-engineering, exploitation, and other security
-              challenges within a team
-            </li>
-            <li>Placed 151<sup>st</sup> out of 1444 teams worldwide</li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="title">Tutor</span>
-            <span class="organization">Stevens Computer Science Department</span>
-            <span class="date">Sept-Dec 2017</span>
-          </header>
-          <ul>
-            <li>
-              Tutored students in Discrete Math for Cryptography, a challenging
-              500-level cybersecurity course
-            </li>
-            <li>
-              Prepared students for exams and assisted with homework
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="title">Mid-Atlantic Collegiate Cyber Defense Competition</span>
-            <span class="organization">Stevens Cyber Defense Team</span>
-            <span class="date"><span class="extra">Qualifiers</span>Feb 2017</span>
-          </header>
-          <ul>
-            <li>
-              Secured &amp; hardened Linux, Windows, and IoT devices in a mock
-              production environment
-            </li>
-          </ul>
-        </section>
-
-        <!-- <section>
-             <header>
-             <span class="title">Lifeguard</span>
-             <span class="organization">Idlewild Pool</span>
-             <span class="date"><span class="extra">Summer</span>2014-2016</span>
-             </header>
-             <ul>
-             <li>Certified Red Cross lifeguard - 2014-present</li>
-             <li>Ensured the safety of swimmers and patrons</li>
-             </ul>
-             </section> -->
-      </section>
-
-      <section class="education">
-        <header><h2>Education</h2></header>
-        <section>
-          <header>
-            <span class="degree">B.S. Cybersecurity</span>
-            <span class="school">Stevens Institute of Technology</span>
-            <span class="date">Jan 2020</span>
-          </header>
-          <div>Received NSF/CyberCorps Scholarship for Service</div>
-          <ul>
-            <li>Systems Security</li>
-            <li>Foundations of Cryptography</li>
-            <li>Algorithms<span class="skill">C++</span></li>
-            <li>Systems Programming<span class="skill">C, Linux</span></li>
-          </ul>
-        </section>
-
-        <section>
-          <header>
-            <span class="degree">A.S. Science - Mathematics</span>
-            <span class="school">County College of Morris</span>
-            <span class="date">May 2017</span>
-          </header>
-        </section>
-      </section>
-
-      <section class="skills">
-        <header><h2>Skills</h2></header>
-        <div>
-          <section class="projects">
-            <header>
-              <h3>Side Projects</h3>
-              <a href="https://github.com/andrewsoutar">github.com/andrewsoutar</a>
-            </header>
-            <section>
-              <header>Hello-Metal</header>
-              <ul>
-                <li>
-                  Built a small "hello world"-style kernel for the x86
-                  platform
-                </li>
-                <li>
-                  Wrote a paging memory manager, long mode support, and
-                  various hardware drivers
-                </li>
-              </ul>
-            </section>
-            <section>
-              <header>Cliq</header>
-              <ul>
-                <li>
-                  Built an interactive, real-time forum as a social platform
-                </li>
-                <li>Developed in Common Lisp for extensibility</li>
-                <li>Written from scratch on a custom web framework</li>
-              </ul>
-            </section>
-            <section>
-              <header>Microblog</header>
-              <ul>
-                <li>
-                  Created a lightweight, easy-to-deploy microblogging
-                  platform
-                </li>
-                <li>Built for security using Python, Flask, and Postgres</li>
-              </ul>
-            </section>
-            <section>
-              <header>Embedded-Python</header>
-              <ul>
-                <li>
-                  Developed a library to integrate Python and Common
-                  Lisp, promoting inter-language library reuse and rapid
-                  prototyping
-                </li>
-              </ul>
-            </section>
-            <!--<section>
-              <header>
-                <dl><dt>CLTM</dt><dd>Common Lisp Transactional Memory</dd></dl>
-              </header>
-              <ul>
-                <li>
-                  Built a Software Transactional Memory library to
-                  eliminate data races without requiring a code rewrite
-                </li>
-              </ul>
-            </section>-->
-          </section>
-
-          <section class="technologies">
-            <header><h3>Technologies</h3></header>
-            <ul>
-              <li>Linux</li>
-              <li>Common Lisp</li>
-              <li>OVAL/SCAP</li>
-              <li>Node.JS</li>
-              <li>Assembly (x86, m68k)</li>
-              <li>C</li>
-              <li>C++</li>
-              <li>Java</li>
-              <li>Python</li>
-              <li>HTML/CSS/Javascript</li>
-              <li>SQL</li>
-            </ul>
-          </section>
-        </div>
-      </section>
-      <footer>
-        <div class="address">
-          <span>2 Hickory Dr.</span><!--
-       --><span>Morris Plains, NJ 07950</span><!--
-     --></div><!--
-     --><span class="citizen"></span>
-      </footer>
-    </main>
+    <!-- <css-switcher /> -->
+    <fake-page>
+      <json-resume src="resume.json" />
+    </fake-page>
   </body>
 </html>
