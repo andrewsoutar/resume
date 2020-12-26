@@ -1,0 +1,192 @@
+{
+  "personal": {
+    "name": "Andrew Soutar",
+    "address": ["2 Hickory Dr.", "Morris Plains, NJ 07950"],
+    "website": "https://www.andrewsoutar.com/",
+    "email": "andrew@andrewsoutar.com",
+    "phone": "(862) 345-6572"
+  },
+  "entries": [
+    {
+      "type": "education",
+      "school": "Stevens Institute of Technology",
+      "degree": "B.S. Cybersecurity",
+      "date": "Jan 2020",
+      "courses": [
+        "Systems Security",
+        "Foundations of Cryptography",
+        "Algorithms",
+        "Systems Programming"
+      ]
+    },
+    {
+      "type": "project",
+      "title": "Phisherman",
+      "points": [
+        "Developed a novel image-recognition-based anti-phishing solution",
+        "Detected 74% of zero-day phishing sites in a simulated test"
+      ]
+    },
+    {
+      "type": "experience",
+      "organization": "The Aerospace Corporation",
+      "title": "Cyber Security Intern",
+      "date": "May-August 2018",
+      "points": [
+        "Designed and partially implemented a real-time vulnerability monitoring application",
+        "Collaborated in the configuration of multiple virtualized environments"
+      ]
+    },
+    {
+      "type": "competition",
+      "organization": "Stevens Cyber Defense Team",
+      "title": "Northeast Collegiate Cyber Defense Competition",
+      "date": "Mar 2018",
+      "points": [
+        "Placed 5th out of 8 teams that qualified for regionals",
+        "Worked with a team to secured & protect diverse physical and cloud infrastructure on multiple platforms in a high-pressure, fast-paced environment"
+      ]
+    },
+    {
+      "type": "competition",
+      "organization": "Stevens Cyber Defense Team",
+      "title": "Penn State Cybersecurity Competition",
+      "date": "Mar 2018",
+      "points": [
+        "Identified and described vulnerabilities in binaries using core dumps and instruction traces",
+        "Placed 1st out of 5 teams"
+      ]
+    },
+    {
+      "type": "competition",
+      "organization": "Stevens Cyber Defense Team",
+      "title": "CSAW Capture-the-Flag",
+      "date": "Sept 2017",
+      "points": [
+        "Competed in a global virtual competition by solving reverse-engineering, exploitation, and other security challenges within a team",
+        "Placed 151st out of 1444 teams worldwide"
+      ]
+    },
+    {
+      "type": "experience",
+      "organization": "Stevens Computer Science Department",
+      "title": "Tutor",
+      "date": "Sept-Dec 2017",
+      "points": [
+        "Tutored students in Discrete Math for Cryptography, a challenging 500-level cybersecurity course",
+        "Prepared students for exams and assisted with homework"
+      ]
+    },
+    {
+      "type": "education",
+      "school": "County College of Morris",
+      "degree": "A.S. Science - Mathematics",
+      "date": "May 2017"
+    },
+    {
+      "type": "competition",
+      "organization": "Stevens Cyber Defense Team",
+      "title": "Mid-Atlantic Collegiate Cyber Defense Competition",
+      "date": "Feb 2017",
+      "points": [
+        "Secured & hardened Linux, Windows, and IoT devices in a mock production environment"
+      ]
+    },
+    {
+      "type": "experience",
+      "organization": "Idlewild Pool",
+      "title": "Lifeguard",
+      "date": "Summer 2014-2016",
+      "points": [
+        "Certified Red Cross lifeguard - 2014-2016",
+        "Ensured the safety of swimmers and patrons"
+      ],
+      "hidden": true
+    },
+    {
+      "type": "project",
+      "title": "Hello-Metal",
+      "points": [
+        "Built a small \"hello world\"-style kernel for the x86 platform",
+        "Wrote a memory manager, long mode support, and various hardware drivers"
+      ]
+    },
+    {
+      "type": "project",
+      "title": "Cliq",
+      "points": [
+        "Built an interactive, real-time forum as a social platform",
+        "Developed in Common Lisp for extensibility",
+        "Written from scratch on a custom web framework"
+      ]
+    },
+    {
+      "type": "project",
+      "title": "Microblog",
+      "points": [
+        "Created a lightweight, easy-to-deploy microblogging platform",
+        "Built for security using Python, Flask, and Postgres"
+      ]
+    },
+    {
+      "type": "project",
+      "title": "Embedded-Python",
+      "points": [
+        "Developed a library to integrate Python and Common Lisp, promoting inter-language library reuse and rapid prototyping"
+      ]
+    },
+    {
+      "type": "project",
+      "title": "CLTM",
+      "hidden": true,
+      "subtitle": "Common Lisp Transactional Memory",
+      "points": [
+        "Built a Software Transactional Memory library to eliminate data races without requiring a code rewrite"
+      ]
+    },
+    {
+      "type": "skill",
+      "title": "Linux"
+    },
+    {
+      "type": "skill",
+      "title": "Common Lisp"
+    },
+    {
+      "type": "skill",
+      "title": "OVAL/SCAP"
+    },
+    {
+      "type": "skill",
+      "title": "Node.JS"
+    },
+    {
+      "type": "skill",
+      "title": "Assembly (x86, m86k)"
+    },
+    {
+      "type": "skill",
+      "title": "C"
+    },
+    {
+      "type": "skill",
+      "title": "C++"
+    },
+    {
+      "type": "skill",
+      "title": "Java"
+    },
+    {
+      "type": "skill",
+      "title": "Python"
+    },
+    {
+      "type": "skill",
+      "title": "HTML/CSS/Javascript"
+    },
+    {
+      "type": "skill",
+      "title": "SQL"
+    }
+  ]
+}
