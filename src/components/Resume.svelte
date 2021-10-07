@@ -81,13 +81,13 @@
     {#if data.personal.github}
       <a href=https://github.com/{data.personal.github}>
         <GithubIcon size=1x class=icon/>
-        github.com/{data.personal.github}
+        {data.personal.github}
       </a>
     {/if}
     {#if data.personal.linkedin}
       <a href=https://linkedin.com/in/{data.personal.linkedin}>
         <LinkedinIcon size=1x class=icon/>
-        linkedin.com/in/{data.personal.linkedin}
+        {data.personal.linkedin}
       </a>
     {/if}
   </address>
