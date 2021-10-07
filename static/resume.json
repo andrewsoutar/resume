@@ -8,18 +8,22 @@
   },
   "entries": [
     {
+      "slug": "smc",
       "type": "experience",
       "organization": "SMC Server Solutions",
       "title": "Technical Consultant",
+      "url": "https://soutarmc.com",
       "date": "Dec. 2020-Present",
       "points": [
         "Provided web development, advanced networking design, and assorted technical services"
       ]
     },
     {
+      "slug": "stevens",
       "type": "education",
       "school": "Stevens Institute of Technology",
       "degree": "B.S. Cybersecurity",
+      "url": "https://stevens.edu",
       "date": "Jan 2020",
       "courses": [
         "Systems Security",
@@ -29,6 +33,7 @@
       ]
     },
     {
+      "slug": "phisherman",
       "type": "project",
       "title": "Phisherman",
       "points": [
@@ -37,46 +42,55 @@
       ]
     },
     {
+      "slug": "aerospace",
       "type": "experience",
       "organization": "The Aerospace Corporation",
       "title": "Cyber Security Intern",
       "date": "May-August 2018",
+      "url": "https://aerospace.org",
       "points": [
         "Designed and partially implemented a real-time vulnerability monitoring application",
         "Collaborated in the configuration of multiple virtualized environments"
       ]
     },
     {
+      "slug": "neccdc-2018",
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
       "title": "Northeast Collegiate Cyber Defense Competition",
       "date": "Mar 2018",
+      "url": "https://neccdl.org/",
       "points": [
         "Placed 5th out of 8 teams that qualified for regionals",
         "Worked with a team to secured & protect diverse physical and cloud infrastructure on multiple platforms in a high-pressure, fast-paced environment"
       ]
     },
     {
+      "slug": "pscc",
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
       "title": "Penn State Cybersecurity Competition",
       "date": "Mar 2018",
+      "url": "https://psusecurity.github.io/",
       "points": [
         "Identified and described vulnerabilities in binaries using core dumps and instruction traces",
         "Placed 1st out of 6 teams"
       ]
     },
     {
+      "slug": "csaw-2017",
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
       "title": "CSAW Capture-the-Flag",
       "date": "Sept 2017",
+      "url": "https://www.csaw.io/ctf",
       "points": [
         "Competed in a global virtual competition by solving reverse-engineering, exploitation, and other security challenges within a team",
         "Placed 151st out of 1444 teams worldwide"
       ]
     },
     {
+      "slug": "stevens-tutor",
       "type": "experience",
       "organization": "Stevens Computer Science Department",
       "title": "Tutor",
@@ -87,16 +101,20 @@
       ]
     },
     {
+      "slug": "ccm",
       "type": "education",
       "school": "County College of Morris",
       "degree": "A.S. Science - Mathematics",
-      "date": "May 2017"
+      "date": "May 2017",
+      "url": "https://www.ccm.edu/"
     },
     {
+      "slug": "maccdc-2017",
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
       "title": "Mid-Atlantic Collegiate Cyber Defense Competition",
       "date": "Feb 2017",
+      "url": "https://maccdc.org/",
       "points": [
         "Secured & hardened Linux, Windows, and IoT devices in a mock production environment"
       ]
