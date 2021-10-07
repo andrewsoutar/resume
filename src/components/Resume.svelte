@@ -41,10 +41,6 @@
    width: 100%;
    margin-top: 0.8em;
  }
-
- .projects > section {
-   margin-left: 2em;
- }
 </style>
 
 <header>
