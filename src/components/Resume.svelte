@@ -4,6 +4,8 @@
  import ExperienceBlock from './ExperienceBlock.svelte';
  import SkillsSection from './SkillsSection.svelte';
 
+ import { GithubIcon, LinkedinIcon, MailIcon, PhoneIcon } from 'svelte-feather-icons';
+
  export let data: any;
 
  $: shownEntries = data.entries.filter(({hidden = false}) => !hidden);
@@ -15,6 +17,8 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   box-sizing: border-box;
+   width: 100%;
  }
  h1 {
    font-size: 170%;
@@ -35,7 +39,23 @@
    text-decoration: none;
  }
  address {
+   display: flex;
+   flex-wrap: wrap;
    font-style: normal;
+   box-sizing: border-box;
+   width: 80%;
+ }
+ address > * {
+   min-width: max-content;
+   flex: 1;
+   text-align: center;
+   margin: 0;
+   padding: 0 1.5em;
+ }
+ address :global(.icon) {
+   height: 100%;
+   box-sizing: border-box;
+   vertical-align: text-bottom;
  }
  section {
    width: 100%;
@@ -45,12 +65,32 @@
 
 <header>
   <h1><a href={data.personal.website} rel=author>{data.personal.name}</a></h1>
-  <div>
-    <a href=tel:{data.personal.phone.replace(/[^\d]/g, "")}>
-      {data.personal.phone}
-    </a>
-  </div>
-  <address><a href=mailto:{data.personal.email}>{data.personal.email}</a></address>
+  <address>
+    {#if data.personal.phone}
+      <a href=tel:{data.personal.phone.replace(/[^\d]/g, "")}>
+        <PhoneIcon size=1x class=icon/>
+        {data.personal.phone}
+      </a>
+    {/if}
+    {#if data.personal.email}
+      <a href=mailto:{data.personal.email}>
+        <MailIcon size=1x class=icon/>
+        {data.personal.email}
+      </a>
+    {/if}
+    {#if data.personal.github}
+      <a href=https://github.com/{data.personal.github}>
+        <GithubIcon size=1x class=icon/>
+        github.com/{data.personal.github}
+      </a>
+    {/if}
+    {#if data.personal.linkedin}
+      <a href=https://linkedin.com/in/{data.personal.linkedin}>
+        <LinkedinIcon size=1x class=icon/>
+        linkedin.com/in/{data.personal.linkedin}
+      </a>
+    {/if}
+  </address>
 </header>
 
 <section>
