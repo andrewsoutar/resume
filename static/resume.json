@@ -8,6 +8,15 @@
   },
   "entries": [
     {
+      "type": "experience",
+      "organization": "SMC Server Solutions",
+      "title": "Technical Consultant",
+      "date": "Dec. 2020-Present",
+      "points": [
+        "Provided web development, advanced networking design, and assorted technical services"
+      ]
+    },
+    {
       "type": "education",
       "school": "Stevens Institute of Technology",
       "degree": "B.S. Cybersecurity",
