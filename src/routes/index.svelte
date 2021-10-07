@@ -1,7 +1,7 @@
 
 <script context=module type=ts>
  export async function preload() {
-   return { resume: await (await this.fetch('/resume.json')).json() };
+   return { resume: await (await this.fetch('resume.json')).json() };
  }
 </script>
 
