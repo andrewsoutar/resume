@@ -9,8 +9,6 @@
  main {
    width: 8.5in;
    max-width: 8.5in;
-   height: 11in;
-   max-height: 11in;
    box-sizing: border-box;
    margin: 1em auto;
    padding: 1em 2em 1em 2em;
