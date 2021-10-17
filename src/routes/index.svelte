@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-  <title>Resume</title>
+  <title>Resume :: {resume.personal.name}</title>
 </svelte:head>
 
 <FakePage>
