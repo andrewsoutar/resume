@@ -56,6 +56,16 @@
       ]
     },
     {
+      "slug": "google-games",
+      "type": "competition",
+      "title": "Google Games NYC",
+      "date": "2018",
+      "points": [
+        "1st place, against other top college teams from the NYC metro area",
+        "Solved programming/algorithms challenges in a small time under high pressure"
+      ]
+    },
+    {
       "slug": "neccdc-2018",
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
@@ -112,6 +122,7 @@
     },
     {
       "slug": "maccdc-2017",
+      "hidden": true,
       "type": "competition",
       "organization": "Stevens Cyber Defense Team",
       "title": "Mid-Atlantic Collegiate Cyber Defense Competition",

@@ -30,7 +30,7 @@
 
 <header>
   <span class=title>{title}</span>
-  <span class=organization>{organization}</span>
+  <span class=organization>{organization || ""}</span>
   <span class=date>{date}</span>
 </header>
 <ul>
