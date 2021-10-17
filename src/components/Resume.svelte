@@ -64,28 +64,28 @@
 </style>
 
 <header>
-  <h1><a href={data.personal.website} rel=author>{data.personal.name}</a></h1>
+  <h1><a href={data.personal.website} target=_blank rel=author>{data.personal.name}</a></h1>
   <address>
     {#if data.personal.phone}
-      <a href=tel:{data.personal.phone.replace(/[^\d]/g, "")}>
+      <a href=tel:{data.personal.phone.replace(/[^\d]/g, "")} target=_blank>
         <PhoneIcon size=1x class=icon/>
         {data.personal.phone}
       </a>
     {/if}
     {#if data.personal.email}
-      <a href=mailto:{data.personal.email}>
+      <a href=mailto:{data.personal.email} target=_blank>
         <MailIcon size=1x class=icon/>
         {data.personal.email}
       </a>
     {/if}
     {#if data.personal.github}
-      <a href=https://github.com/{data.personal.github}>
+      <a href=https://github.com/{data.personal.github} target=_blank>
         <GithubIcon size=1x class=icon/>
         {data.personal.github}
       </a>
     {/if}
     {#if data.personal.linkedin}
-      <a href=https://linkedin.com/in/{data.personal.linkedin}>
+      <a href=https://linkedin.com/in/{data.personal.linkedin} target=_blank>
         <LinkedinIcon size=1x class=icon/>
         {data.personal.linkedin}
       </a>
