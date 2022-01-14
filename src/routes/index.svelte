@@ -12,8 +12,8 @@
 </script>
 
 <script lang="ts">
-  import FakePage from "../components/FakePage.svelte";
-  import Resume from "../components/Resume.svelte";
+  import FakePage from "$lib/components/FakePage.svelte";
+  import Resume from "$lib/components/Resume.svelte";
 
   export let resume: any;
 </script>
