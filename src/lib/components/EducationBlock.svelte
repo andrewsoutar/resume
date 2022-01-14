@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let data: any;
+  import type { EducationEntry } from "$lib/types.js";
+  export let data: EducationEntry;
   $: ({ school, degree, date } = data);
 </script>
 

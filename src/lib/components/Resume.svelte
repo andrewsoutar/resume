@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Entry, Resume } from "$lib/types.js";
   import ResumeSection from "./ResumeSection.svelte";
   import EducationBlock from "./EducationBlock.svelte";
   import ExperienceBlock from "./ExperienceBlock.svelte";
@@ -11,11 +12,15 @@
     PhoneIcon
   } from "svelte-feather-icons";
 
-  export let data: any;
+  export let data: Resume;
 
   $: shownEntries = data.entries.filter(({ hidden = false }) => !hidden);
-  $: entriesByType = (...types) =>
-    shownEntries.filter(({ type: tp }) => types.includes(tp));
+  $: entriesByType = <T extends string>(
+    ...types: T[]
+  ): (Entry & { type: T })[] =>
+    shownEntries.filter(({ type: tp }) =>
+      (types as readonly string[]).includes(tp)
+    ) as (Entry & { type: T })[];
 </script>
 
 <style>

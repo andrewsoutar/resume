@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let data: any;
+  import type { ExperienceEntry } from "$lib/types.js";
+  export let data: ExperienceEntry;
   $: ({ organization, title, date, points = [] } = data);
 </script>
 

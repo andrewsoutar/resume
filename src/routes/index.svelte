@@ -2,10 +2,14 @@
   import type { LoadInput, LoadOutput } from "@sveltejs/kit";
   import { assets } from "$app/paths";
 
+  import type { Resume as ResumeType } from "$lib/types.js";
+
   export async function load({ fetch }: LoadInput): Promise<LoadOutput> {
     return {
       props: {
-        resume: await (await fetch(`${assets}/resume.json`)).json()
+        resume: (await (
+          await fetch(`${assets}/resume.json`)
+        ).json()) as ResumeType
       }
     };
   }
@@ -15,7 +19,7 @@
   import FakePage from "$lib/components/FakePage.svelte";
   import Resume from "$lib/components/Resume.svelte";
 
-  export let resume: any;
+  export let resume: ResumeType;
 </script>
 
 <svelte:head>

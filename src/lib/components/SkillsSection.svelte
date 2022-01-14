@@ -1,5 +1,8 @@
 <script lang="ts">
-  export let projects, technologies, courses;
+  import type { ProjectEntry, SkillEntry } from "$lib/types.js";
+  export let projects: ProjectEntry[];
+  export let technologies: SkillEntry[];
+  export let courses: string[];
   import SectionHeader from "./SectionHeader.svelte";
 </script>
 
