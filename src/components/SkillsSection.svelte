@@ -1,4 +1,4 @@
-<script type=ts>
+<script lang="ts">
  export let projects, technologies, courses;
  import SectionHeader from './SectionHeader.svelte';
 </script>

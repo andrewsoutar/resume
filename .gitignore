@@ -1,6 +1,7 @@
-/node_modules/
-/src/node_modules/@sapper/
-yarn-error.log
-/__sapper__/
-/.log/
-/.env
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example

@@ -1,4 +1,4 @@
-<script type=ts>
+<script lang="ts">
  import ResumeSection from './ResumeSection.svelte';
  import EducationBlock from './EducationBlock.svelte';
  import ExperienceBlock from './ExperienceBlock.svelte';

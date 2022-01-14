@@ -1,4 +1,4 @@
-<script type=ts>
+<script lang="ts">
  export let data: any;
  $: ({ school, degree, date } = data);
 </script>

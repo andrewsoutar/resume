@@ -1,4 +1,4 @@
-<script type=ts>
+<script lang="ts">
  export let name: string;
  export let block: any;
  export let data: any;

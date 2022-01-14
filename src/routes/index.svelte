@@ -1,11 +1,17 @@
+<script context="module" lang="ts">
+ import type {LoadInput, LoadOutput} from "@sveltejs/kit";
+ import {assets} from "$app/paths";
 
-<script context=module type=ts>
- export async function preload() {
-   return { resume: await (await this.fetch('resume.json')).json() };
+ export async function load({fetch}: LoadInput): Promise<LoadOutput> {
+   return {
+     props: {
+       resume: await (await fetch(`${assets}/resume.json`)).json()
+     }
+   };
  }
 </script>
 
-<script type=ts>
+<script lang="ts">
  import FakePage from '../components/FakePage.svelte';
  import Resume from '../components/Resume.svelte';
 
